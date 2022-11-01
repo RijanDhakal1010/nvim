@@ -52,6 +52,10 @@ return packer.startup(function(use)
 
   use "sainnhe/everforest" -- The color schemes plugin
 
+  use({
+  "iamcco/markdown-preview.nvim",
+  run = function() vim.fn["mkdp#util#install"]() end,}) -- This is the plugin to use markdown preview. This specific config is designed to be used without npm (which is how I prefer it).
+
   -- This chunk of code automatically sets up the configuration after cloning packer.nvim
   -- It should go after the list of plugins to be installed
   if PACKER_BOOTSTRAP then

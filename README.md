@@ -25,3 +25,4 @@ end
 
 `.local/share/nvim` is where the plugins live.
 
+When possible try to install plugins without npm.

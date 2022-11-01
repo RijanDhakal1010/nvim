@@ -79,6 +79,11 @@ _G.packer_plugins = {
     path = "/home/rijan/.local/share/nvim/site/pack/packer/start/everforest",
     url = "https://github.com/sainnhe/everforest"
   },
+  ["markdown-preview.nvim"] = {
+    loaded = true,
+    path = "/home/rijan/.local/share/nvim/site/pack/packer/start/markdown-preview.nvim",
+    url = "https://github.com/iamcco/markdown-preview.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/home/rijan/.local/share/nvim/site/pack/packer/start/packer.nvim",
