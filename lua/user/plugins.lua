@@ -48,9 +48,20 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
 
--- Extra plugins
+  -- Extra plugins
 
-  use "sainnhe/everforest" -- The color schemes plugin
+  -- The one in use for colorscheme
+
+  use {
+	  "catppuccin/nvim",
+	  as = "catppuccin",
+	  config = function()
+		  require("catppuccin").setup {
+			  flavour = "macchiato" -- mocha, macchiato, frappe, latte
+		  }
+		  vim.api.nvim_command "colorscheme catppuccin"
+	  end
+  }
 
 -- The ones for cmp
 
