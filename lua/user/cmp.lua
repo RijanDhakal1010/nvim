@@ -101,7 +101,8 @@ cmp.setup {
       vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
       -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
       vim_item.menu = ({
-        luasnip = "[Snippet]",
+        nvim_lsp = "[LSP]",
+	luasnip = "[luasnip]",
         buffer = "[Buffer]",
         path = "[Path]",
       })[entry.source.name]
@@ -109,7 +110,8 @@ cmp.setup {
     end,
   },
   sources = { -- This is the index for the completion suggestions. So, which suggestion is suggested first.
-    { name = "luasnip" }, -- You have to install a plugin first and add it as a source.
+    { name = "nvim_lsp" },-- You have to install a plugin first and add it as a source.
+    {name = "luasnip"},
     { name = "buffer" },
     { name = "path" },
   },

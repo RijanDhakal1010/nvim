@@ -65,6 +65,13 @@ return packer.startup(function(use)
   use "L3MON4D3/LuaSnip"
   use "rafamadriz/friendly-snippets"
 
+-- plugins for auto-completion
+
+  use "neovim/nvim-lspconfig" -- enable LSP.
+  use "williamboman/mason.nvim" -- simple to use language server installer.
+  use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
+
+-- This is the plugin that helps with markdown.
   use({
   "iamcco/markdown-preview.nvim",
   run = function() vim.fn["mkdp#util#install"]() end,}) -- This is the plugin to use markdown preview. This specific config is designed to be used without npm (which is how I prefer it).
