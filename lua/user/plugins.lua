@@ -78,18 +78,7 @@ return packer.startup(function(use)
 
 -- plugins for auto-completion
 
-  use { -- This is coming form this source https://alpha2phi.medium.com/neovim-for-beginners-lsp-part-1-b3a17ddbe611 and this script https://gist.githubusercontent.com/mengwangk/0233180880ba0b1e38798d666c381db8/raw/647098253d4bfc5f12f6fe3a9314f9b89295916b/plugins.lua
-  "neovim/nvim-lspconfig",
-  opt = true,
-  event = "BufReadPre",
-  wants = { "nvim-lsp-installer" },
-  config = function()
-    require("config.lsp").setup()
-  end,
-  requires = {
-    "williamboman/nvim-lsp-installer",
-  },
-}
+  use "neovim/nvim-lspconfig" -- enable LSP.
   use "williamboman/mason.nvim" -- simple to use language server installer.
   use "williamboman/mason-lspconfig.nvim" -- simple to use language server installer
 
