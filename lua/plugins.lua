@@ -85,6 +85,16 @@ function M.setup()
     end
     }
 
+	-- This is the buffer line plugin
+	use {
+    "akinsho/nvim-bufferline.lua",
+    event = "BufReadPre",
+    wants = "nvim-web-devicons",
+    config = function()
+      require("config.bufferline").setup()
+    end,
+  }
+
     -- Startup screen
     use {
       "goolord/alpha-nvim",
@@ -104,7 +114,7 @@ function M.setup()
 	
 	-- The config for Nvimtree
 	
-	use{use {
+	use{
  "kyazdani42/nvim-tree.lua",
  requires = {
    "kyazdani42/nvim-web-devicons",
@@ -113,7 +123,7 @@ function M.setup()
    config = function()
      require("config.nvimtree").setup()
    end,
-}}
+}
 	-- Markdown preview
 	use({
 	"iamcco/markdown-preview.nvim",
