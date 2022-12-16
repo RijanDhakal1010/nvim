@@ -4,11 +4,11 @@ function M.setup()
   -- Indicate first time installation
   local packer_bootstrap = false
 
+  -- packer.nvim configuration
   local conf = {
-    profile = {
-      enable = true,
-      threshold =0, -- this tracks the loading time of a plugin beyond the noted threshold
-    },
+	  profile = {enable = true,
+  threhold = 0, -- this tracks the loading time of a plugin beyond the noted threshold
+  },
     display = {
       open_fn = function()
         return require("packer.util").float { border = "rounded" }
@@ -64,38 +64,37 @@ function M.setup()
 
   -- Plugins
   local function plugins(use)
-    
-    use {"wbthomason/packer.nvim"}
+    use { "wbthomason/packer.nvim" }
 
-    -- the fzf plugin
-
-    use{
-      "ibhagwan/fzf-lua",
-      requires = {"kyazdani42/nvim-web-devicons"},
-    }
+	-- the fzf plugin
+	
+	use {
+		"ibhagwan/fzf-lua",
+		requires = {"kyazdani42/nvim-web-devicons"},
+	}
 
     -- Colorscheme
     use{
-      "catppuccin/nvim",
-      as = "catppuccin",
-      config= function()
-		  require("catppuccin").setup{
-		  	flavour = "macchiato"
-		  }
-		  vim.api.nvim_command "colorscheme catppuccin"
-      end
+    "catppuccin/nvim",
+    as = "catppuccin",
+    config= function()
+		require("catppuccin").setup{
+			flavour = "macchiato"
+		}
+		vim.api.nvim_command "colorscheme catppuccin"
+    end
     }
+	
 
-    -- This is the buffer line plugin
-
-    use {
-      "akinsho/nvim-bufferline.lua",
-      event = "BufReadPre",
-      wants = "nvim-web-devicons",
-      config = function()
-        require("config.bufferline").setup()
-      end,
-    }
+	-- This is the buffer line plugin
+	use {
+    "akinsho/nvim-bufferline.lua",
+    event = "BufReadPre",
+    wants = "nvim-web-devicons",
+    config = function()
+      require("config.bufferline").setup()
+    end,
+  }
 
     -- Startup screen
     use {
@@ -104,37 +103,42 @@ function M.setup()
         require("config.alpha").setup()
       end,
     }
-
-    -- The plugin for the status line
-
+	-- The plugin for the status line
     use{
-      'nvim-lualine/lualine.nvim',
-		  requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-        config= function()
-          require('lualine').setup()
-          options = { theme = 'gruvbox' }
-        end
+		'nvim-lualine/lualine.nvim',
+		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      config= function()
+        require('lualine').setup()
+        options = { theme = 'gruvbox' }
+      end
     }
+	
+	-- The config for Nvimtree
+	
+	use{
+ "kyazdani42/nvim-tree.lua",
+ requires = {
+   "kyazdani42/nvim-web-devicons",
+ },
+ cmd = { "NvimTreeToggle", "NvimTreeClose" },
+   config = function()
+     require("config.nvimtree").setup()
+   end,
+}
+	-- Markdown preview
+	use({
+	"iamcco/markdown-preview.nvim",
+	run = function() vim.fn["mkdp#util#install"]() end,
+})
 
-    -- The config for Nvimtree
-
-    use{
-      "kyazdani42/nvim-tree.lua",
-      requires = {
-        "kyazdani42/nvim-web-devicons",
-      },
-      cmd = {"NvimTreeToggle", "NvimTreeClose"},
-      config = function()
-        require("config.nvimtree").setup()
-      end,
-    }
-
-    -- Markdwon preview
-
-    use({
-      "iamcco/markdown-preview.nvim",
-      run = function() vim.fn["mkdp#util#install"]() end,
-    })
+    -- Git
+    --use {
+    --  "TimUntersberger/neogit",
+    --  requires = "nvim-lua/plenary.nvim",
+    --  config = function()
+    --    require("config.neogit").setup()
+    --  end,
+    --}
 
     if packer_bootstrap then
       print "Restart Neovim required after installation!"

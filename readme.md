@@ -8,3 +8,10 @@ At this point in the setup I have:
 
 # To-do
 - Make it so that `crtl + back_space` works in terminal.
+- Still needs `cmp`.
+- Needs LSP, does not need auto pairs but does need pair highlighting.
+- Perhaps a lsp installer, too (maybe, maybe not).
+- Needs debugging
+- Needs snippets
+- Needs a change log indicator
+- By the looks of it much more work will need to be done to configure cmp
