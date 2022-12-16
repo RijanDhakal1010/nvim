@@ -11,3 +11,6 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", default_opts)  -- This maps :Lex
 
 -- Insert mode --
 keymap("i", "<C-s>", "<Esc>:w<cr>", default_opts) -- This maps the 'crtl + s ' combintaion to save the file in its current state.
+
+-- Map crtl + backspace to delete the previous word
+keymap("i", '<C-H>', '<C-W>', default_opts)

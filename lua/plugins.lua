@@ -17,7 +17,7 @@ function M.setup()
   }
 
   -- Check if packer.nvim is installed
-  -- Run PackerCompile if there are changes in this file
+  -- Run PackerCompile if there are changes in this fi
   local function packer_init()
     local fn = vim.fn
     local install_path = fn.stdpath "data" .. "/site/pack/packer/start/packer.nvim"
@@ -43,10 +43,10 @@ function M.setup()
 
   -- This bit of code makes the plugin.lua file source itself everytime it is changed or saved.
   vim.cmd [[
-	augroup packer_user_config
-		autocmd!
-		autocmd BufWritePost plugins.lua source <afile> | PackerSync
-	augroup end
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerSync
+  augroup end
   ]]
 
   -- Sample plugin installation
@@ -55,10 +55,10 @@ function M.setup()
   --  "", -- plugin location
   --  as = "catppuccin", -- define as 
   --  config= function() -- config
-	--    require("<as>").setup{
-	--		-- place commands here
-	--    }
-	--    vim.api.nvim_command "" -- any vim specific commands here
+  --    require("<as>").setup{
+  --		-- place commands here
+  --    }
+  --    vim.api.nvim_command "" -- any vim specific commands here
   --  end
   --  }
 
@@ -67,11 +67,19 @@ function M.setup()
     
     use {"wbthomason/packer.nvim"}
 
+		-- The section to hopefully manage the lsp-config which has been so far quite elusive.
+		--[[ For now this will have to be do in a]] 
+		use{
+			"neovim/nvim-lspconfig"
+		}
+
+
+    
     -- the fzf plugin
 
     use{
       "ibhagwan/fzf-lua",
-      requires = {"kyazdani42/nvim-web-devicons"},
+      requires = {"kyazdani42/nvim-web-devicons"}, 
     }
 
     -- Colorscheme
@@ -79,10 +87,10 @@ function M.setup()
       "catppuccin/nvim",
       as = "catppuccin",
       config= function()
-		  require("catppuccin").setup{
-		  	flavour = "macchiato"
-		  }
-		  vim.api.nvim_command "colorscheme catppuccin"
+      require("catppuccin").setup{
+        flavour = "macchiato"
+      }
+      vim.api.nvim_command "colorscheme catppuccin"
       end
     }
 
@@ -109,7 +117,7 @@ function M.setup()
 
     use{
       'nvim-lualine/lualine.nvim',
-		  requires = { 'kyazdani42/nvim-web-devicons', opt = true },
+      requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         config= function()
           require('lualine').setup()
           options = { theme = 'gruvbox' }
