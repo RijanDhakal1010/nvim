@@ -38,7 +38,7 @@ function M.setup()
         print("An error occurred while installing packer.nvim using the bootstrap function: " .. tostring(result))
       end
     end
-    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
+    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerSync"
   end
 
   -- This bit of code makes the plugin.lua file source itself everytime it is changed or saved.
@@ -83,20 +83,11 @@ function M.setup()
     }
 
     -- Colorscheme
-    use{
-      "catppuccin/nvim",
-      as = "catppuccin",
-      config= function()
-      require("catppuccin").setup{
-        flavour = "macchiato"
-      }
-      vim.api.nvim_command "colorscheme catppuccin"
-      end
-    }
+		use{"morhetz/gruvbox"}
 
     -- This is the buffer line plugin
 
-    use {
+    use{
       "akinsho/nvim-bufferline.lua",
       event = "BufReadPre",
       wants = "nvim-web-devicons",
@@ -105,8 +96,9 @@ function M.setup()
       end,
     }
 
+
     -- Startup screen
-    use {
+    use{
       "goolord/alpha-nvim",
       config = function()
         require("config.alpha").setup()
@@ -124,6 +116,14 @@ function M.setup()
         end
     }
 
+		-- The plugin for the blank-lines
+		use{
+			"lukas-reineke/indent-blankline.nvim",
+			config = function()
+				require("config.blankline").setup()
+			end,
+		}
+
     -- The config for Nvimtree
 
     use{
@@ -136,6 +136,7 @@ function M.setup()
         require("config.nvimtree").setup()
       end,
     }
+		-- Trying to install tree-sitter again
 
     -- Markdwon preview
 
