@@ -83,8 +83,15 @@ function M.setup()
     }
 
     -- Colorscheme
-		use{"morhetz/gruvbox"}
-
+		use{
+			"navarasu/onedark.nvim",
+			config= function()
+				require("onedark").setup(){
+					style = "darker"
+				}
+				vim.api.nvim_command "colorscheme onedark"
+			end
+		}
     -- This is the buffer line plugin
 
     use{
