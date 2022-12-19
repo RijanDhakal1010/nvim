@@ -38,7 +38,7 @@ function M.setup()
         print("An error occurred while installing packer.nvim using the bootstrap function: " .. tostring(result))
       end
     end
-    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerSync"
+    vim.cmd "autocmd BufWritePost plugins.lua source <afile> | PackerCompile"
   end
 
   -- This bit of code makes the plugin.lua file source itself everytime it is changed or saved.
@@ -64,7 +64,7 @@ function M.setup()
 
   -- Plugins
   local function plugins(use)
-    
+
     use {"wbthomason/packer.nvim"}
 
 		-- The section to hopefully manage the lsp-config which has been so far quite elusive.
@@ -81,17 +81,7 @@ function M.setup()
       "ibhagwan/fzf-lua",
       requires = {"kyazdani42/nvim-web-devicons"}, 
     }
-
-    -- Colorscheme
-		use{
-			"navarasu/onedark.nvim",
-			config= function()
-				require("onedark").setup(){
-					style = "darker"
-				}
-				vim.api.nvim_command "colorscheme onedark"
-			end
-		}
+    
     -- This is the buffer line plugin
 
     use{
@@ -103,6 +93,22 @@ function M.setup()
       end,
     }
 
+    -- colorschemes
+
+    use {
+      "catppuccin/nvim",
+      as = "catppuccin",
+      config = function()
+        require("catppuccin").setup()
+      end,
+    }
+
+		use {
+			"folke/tokyonight.nvim",
+			config = function()
+				require("config.tokyonight").setup()
+			end,
+		}
 
     -- Startup screen
     use{
@@ -114,7 +120,7 @@ function M.setup()
 
     -- The plugin for the status line
 
-    use{
+    use {
       'nvim-lualine/lualine.nvim',
       requires = { 'kyazdani42/nvim-web-devicons', opt = true },
         config= function()
@@ -124,7 +130,7 @@ function M.setup()
     }
 
 		-- The plugin for the blank-lines
-		use{
+		use {
 			"lukas-reineke/indent-blankline.nvim",
 			config = function()
 				require("config.blankline").setup()
@@ -133,7 +139,7 @@ function M.setup()
 
     -- The config for Nvimtree
 
-    use{
+    use {
       "kyazdani42/nvim-tree.lua",
       requires = {
         "kyazdani42/nvim-web-devicons",
@@ -147,7 +153,7 @@ function M.setup()
 
     -- Markdwon preview
 
-    use({
+    use ({
       "iamcco/markdown-preview.nvim",
       run = function() vim.fn["mkdp#util#install"]() end,
     })
