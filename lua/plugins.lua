@@ -71,12 +71,8 @@ function M.setup()
 		--[[ For now this will have to be do in a]] 
 		use{
 			"neovim/nvim-lspconfig"
-		}
-
-
-    
+		} 
     -- the fzf plugin
-
     use{
       "ibhagwan/fzf-lua",
       requires = {"kyazdani42/nvim-web-devicons"}, 
@@ -94,23 +90,9 @@ function M.setup()
     }
 
     -- colorschemes
+		use {"EdenEast/nightfox.nvim"}
 
-    use {
-      "catppuccin/nvim",
-      as = "catppuccin",
-      config = function()
-        require("catppuccin").setup()
-      end,
-    }
-
-		use {
-			"folke/tokyonight.nvim",
-			config = function()
-				require("config.tokyonight").setup()
-			end,
-		}
-
-    -- Startup screen
+		-- Startup screen
     use{
       "goolord/alpha-nvim",
       config = function()
