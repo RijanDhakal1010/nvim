@@ -7,39 +7,9 @@ function M.setup()
   end
 
   local dashboard = require "alpha.themes.dashboard"
+
   local function header()
-    return {
-      [[           ___]],
-      [[     _..--"\  `|`""--.._]],
-      [[  .-'       \  |        `'-.]],
-      [[ /           \_|___...----'`\]],
-      [[|__,,..--""``(_)--..__      |]],
-      [['\     _.--'`.I._     ''--..']],
-      [[  `''"`,#JGS/_|_\###,---'`]],
-      [[    ,#'  _.:`___`:-._ '#,]],
-      [[   #'  ,~'-;(oIo);-'~, '#]],
-      [[   #   `~-(  |    )=~`  #]],
-      [[   #       | |_  |      #]],
-      [[   #       ; ._. ;      #]],
-      [[   #  _..-;|\ - /|;-._  #]],
-      [[   #-'   /_ \\_// _\  '-#]],
-      [[ /`#    ; /__\-'__\;    #`\]],
-      [[;  #\.--|  |O  O   |'-./#  ;]],
-      [[|__#/   \ _;O__O___/   \#__|]],
-      [[ | #\    [I_[_]__I]    /# |]],
-      [[ \_(#   /  |O  O   \   #)_/]],
-      [[       /   |        \]],
-      [[      /    |         \]],
-      [[     /    /\          \]],
-      [[    /     | `\         ;]],
-      [[   ;      \   '.       |]],
-      [[    \-._.__\     \_..-'/]],
-      [[     '.\  \-.._.-/  /'`]],
-      [[        \_.\    /._/]],
-      [[         \_.;  ;._/]],
-      [[       .-'-./  \.-'-.]],
-      [[      (___.'    '.___)]],
-    }
+    return require("utils.logos")["random"]
   end
 
   dashboard.section.header.val = header()
@@ -53,8 +23,18 @@ function M.setup()
   local function footer()
     -- Number of plugins
     local total_plugins = #vim.tbl_keys(packer_plugins)
-    local datetime = os.date "%d-%m-%Y  %H:%M:%S"
-    local plugins_text = "\t" .. total_plugins .. " plugins  " .. datetime
+    local datetime = os.date "%d-%m-%Y %H:%M:%S"
+    local plugins_text = "   "
+      .. total_plugins
+      .. " plugins"
+      .. "   v"
+      .. vim.version().major
+      .. "."
+      .. vim.version().minor
+      .. "."
+      .. vim.version().patch
+      .. "   "
+      .. datetime
 
     -- Quote
     local fortune = require "alpha.fortune"
