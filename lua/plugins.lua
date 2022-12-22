@@ -69,9 +69,126 @@ function M.setup()
 
 		-- The section to hopefully manage the lsp-config which has been so far quite elusive.
 		--[[ For now this will have to be do in a]] 
-		use{
-			"neovim/nvim-lspconfig"
-		} 
+
+    use {
+      "hrsh7th/nvim-cmp",
+      event = "InsertEnter",
+      opt = true,
+      config = function()
+        require("config.cmp").setup()
+      end,
+      requires = {
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-nvim-lua",
+        "ray-x/cmp-treesitter",
+        "hrsh7th/cmp-cmdline",
+        "saadparwaiz1/cmp_luasnip",
+        { "hrsh7th/cmp-nvim-lsp", module = { "cmp_nvim_lsp" } },
+        "hrsh7th/cmp-nvim-lsp-signature-help",
+        "lukas-reineke/cmp-rg",
+        "davidsierradz/cmp-conventionalcommits",
+        { "onsails/lspkind-nvim", module = { "lspkind" } },
+        -- "hrsh7th/cmp-calc",
+        -- "f3fora/cmp-spell",
+        -- "hrsh7th/cmp-emoji",
+        {
+          "L3MON4D3/LuaSnip",
+          config = function()
+            require("config.snip").setup()
+          end,
+          module = { "luasnip" },
+        },
+        "rafamadriz/friendly-snippets",
+        "honza/vim-snippets",
+        { "tzachar/cmp-tabnine", run = "./install.sh", disable = true },
+      },
+    }
+
+		-- This is meant for lsp but I do not really unserstand it yet
+
+    use {
+      "neovim/nvim-lspconfig",
+      config = function()
+        require("config.lsp").setup()
+      end,
+      requires = {
+        -- { "lvimuser/lsp-inlayhints.nvim", branch = "readme" },
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel/mason-tool-installer.nvim",
+        { "jayp0521/mason-null-ls.nvim" },
+        "folke/neodev.nvim",
+        "RRethy/vim-illuminate",
+        "jose-elias-alvarez/null-ls.nvim",
+        {
+          "j-hui/fidget.nvim",
+          config = function()
+            require("fidget").setup {}
+          end,
+        },
+        { "b0o/schemastore.nvim", module = { "schemastore" } },
+        { "jose-elias-alvarez/typescript.nvim", module = { "typescript" } },
+        {
+          "SmiteshP/nvim-navic",
+          -- "alpha2phi/nvim-navic",
+          config = function()
+            require("nvim-navic").setup {}
+          end,
+          module = { "nvim-navic" },
+        },
+        {
+          "simrat39/inlay-hints.nvim",
+          config = function()
+            require("inlay-hints").setup()
+          end,
+        },
+        {
+          "zbirenbaum/neodim",
+          event = "LspAttach",
+          config = function()
+            require("config.neodim").setup()
+          end,
+          disable = true,
+        },
+        {
+          "theHamsta/nvim-semantic-tokens",
+          config = function()
+            require("config.semantictokens").setup()
+          end,
+          disable = false,
+        },
+        {
+          "David-Kunz/markid",
+          disable = true,
+        },
+        {
+          "simrat39/symbols-outline.nvim",
+          cmd = { "SymbolsOutline" },
+          config = function()
+            require("symbols-outline").setup()
+          end,
+          disable = true,
+        },
+        -- {
+        --   "weilbith/nvim-code-action-menu",
+        --   cmd = "CodeActionMenu",
+        -- },
+        -- {
+        --   "rmagatti/goto-preview",
+        --   config = function()
+        --     require("goto-preview").setup {}
+        --   end,
+        -- },
+        -- {
+        --   "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        --   config = function()
+        --     require("lsp_lines").setup()
+        --   end,
+        -- },
+      },
+    }
+
     -- the fzf plugin
     use{
       "ibhagwan/fzf-lua",

@@ -17,10 +17,10 @@ function M.setup()
 		enable = true,
 		open_win_config = {
 			relative = "editor",
-        	width = width,
-        	height = height,
-        	row = (gheight - height) * 0.4,
-        	col = (gwidth - width) * 0.5,
+      width = width,
+      height = height,
+      row = (gheight - height) * 0.4,
+      col = (gwidth - width) * 0.5,
 		}
 	  }
     },
