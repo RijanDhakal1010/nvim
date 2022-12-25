@@ -2,7 +2,7 @@ local M = {}
 
 function M.setup()
 
-	local cmp = require "cmp"
+	local cmp = require "cmp" -- not sure why but this is how cmp needs its settings to be passed.
 
 	cmp.setup{
 		mapping = {
