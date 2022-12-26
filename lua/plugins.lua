@@ -70,16 +70,40 @@ function M.setup()
 		-- The section to hopefully manage the lsp-config which has been so far quite elusive.
 		--[[ For now this will have to be do in a]] 
 		use{
-			"neovim/nvim-lspconfig"
+			"neovim/nvim-lspconfig",
+			config = function()
+				require("config.lsp").setup()
+			end,
+			requires = {
+				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
+				"j-hui/fidget.nvim"
+				--{
+					--"j-hui/fidget.nvim",
+					--config = function()
+						--require("config.fidget").setup()
+					--end,
+				--},
+			},
 		} 
-    -- the fzf plugin
-		
+		-- install tree-sitter here
+		use {"nvim-treesitter/nvim-treesitter"}
+		-- seems I will need telescope as well for all of this to work #TODO
+		use {
+			"nvim-telescope/telescope.nvim",
+			requires = {
+				"nvim-lua/plenary.nvim"
+			}
+		}
+    -- the fzf plugin	
 		use {
 			"hrsh7th/nvim-cmp",
 			config = function()
 				require("config.cmp").setup()
 			end,
 		}
+
+		-- this is the stuff for cmp
 		use {"hrsh7th/cmp-nvim-lsp"}
 		use {"hrsh7th/cmp-buffer"}
 		use {"hrsh7th/cmp-path"}
@@ -89,9 +113,8 @@ function M.setup()
 
     use{
       "ibhagwan/fzf-lua",
-      requires = {"kyazdani42/nvim-web-devicons"}, 
-    }
-    
+      requires = {"kyazdani42/nvim-web-devicons"},
+		}
     -- This is the buffer line plugin
 
     use{
@@ -145,7 +168,6 @@ function M.setup()
         require("config.nvimtree").setup()
       end,
     }
-		-- Trying to install tree-sitter again
 
     -- Markdwon preview
 
@@ -168,8 +190,7 @@ function M.setup()
   local success, result = pcall(function()
     packer.init(conf)
     packer.startup(plugins)
-  end)
-  
+  end) 
 end
 
 return M
