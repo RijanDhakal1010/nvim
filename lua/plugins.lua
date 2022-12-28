@@ -68,25 +68,8 @@ function M.setup()
     use {"wbthomason/packer.nvim"}
 
 		-- The section to hopefully manage the lsp-config which has been so far quite elusive.
-		--[[ For now this will have to be do in a]] 
-		use{
-			"neovim/nvim-lspconfig",
-			config = function()
-				require("config.lsp").setup()
-			end,
-			requires = {
-				"williamboman/mason.nvim",
-				"williamboman/mason-lspconfig.nvim",
-				"j-hui/fidget.nvim"
-				--{
-					--"j-hui/fidget.nvim",
-					--config = function()
-						--require("config.fidget").setup()
-					--end,
-				--},
-			},
-		} 
-		-- install tree-sitter here
+		--[[ For now this will have to be do in a]]
+    -- install tree-sitter here
 		use {"nvim-treesitter/nvim-treesitter"}
 		-- seems I will need telescope as well for all of this to work #TODO
 		use {
@@ -95,22 +78,40 @@ function M.setup()
 				"nvim-lua/plenary.nvim"
 			}
 		}
-    -- the fzf plugin	
+
 		use {
-			"hrsh7th/nvim-cmp",
+      "hrsh7th/nvim-cmp",
 			config = function()
 				require("config.cmp").setup()
 			end,
+      requires = {
+        "hrsh7th/cmp-nvim-lsp",
+		    "hrsh7th/cmp-buffer",
+		    "hrsh7th/cmp-path",
+		    "hrsh7th/cmp-cmdline",
+		    "L3MON4D3/LuaSnip",
+		    "saadparwaiz1/cmp_luasnip",
+      }
 		}
 
-		-- this is the stuff for cmp
-		use {"hrsh7th/cmp-nvim-lsp"}
-		use {"hrsh7th/cmp-buffer"}
-		use {"hrsh7th/cmp-path"}
-		use {"hrsh7th/cmp-cmdline"}
-		use {"L3MON4D3/LuaSnip"}
-		use {"saadparwaiz1/cmp_luasnip"}
+		use{
+			"neovim/nvim-lspconfig",
+			config = function()
+				require("config.lsp").setup()
+			end,
+			requires = {
+				"williamboman/mason.nvim",
+				"williamboman/mason-lspconfig.nvim",
+        {
+          "j-hui/fidget.nvim",
+          config = function()
+            require("fidget").setup()
+          end,
+        },
+			},
+		}
 
+    -- the fzf plugin
     use{
       "ibhagwan/fzf-lua",
       requires = {"kyazdani42/nvim-web-devicons"},
