@@ -8,6 +8,8 @@ local mason_lspconfig = require 'mason-lspconfig'
 
 local M={}
 
+--local servers = require("config.servers")
+
 function M.setup()
 
 	require('mason').setup()
@@ -21,7 +23,7 @@ function M.setup()
 			require('lspconfig')[server_name].setup{
 				capabilities = capabilities,
 				on_attach = on_attach,
-				settings = servers[server_name],
+				settings = require("config.servers")[server_name],
 			}
 		end,
 	}
