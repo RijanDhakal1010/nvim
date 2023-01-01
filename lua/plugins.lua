@@ -97,11 +97,21 @@ function M.setup()
 		use{
 			"neovim/nvim-lspconfig",
 			config = function()
-				require("config.lsp").setup()
+				require("config.lsp_keymaps")
 			end,
 			requires = {
-				"williamboman/mason.nvim",
-				"williamboman/mason-lspconfig.nvim",
+				{
+          "williamboman/mason.nvim",
+          config = function()
+            require('mason').setup()
+          end,
+        },
+				{
+          "williamboman/mason-lspconfig.nvim",
+          config = function()
+            require("config.mason_lspconfig").setup()
+          end,
+        },
         {
           "j-hui/fidget.nvim",
           config = function()
